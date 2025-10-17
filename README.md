@@ -1,6 +1,6 @@
 # 🏠 Desafio POO
 
-Este projeto foi desenvolvido com o objetivo de aplicar os **três pilares da POO** — abstração, herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
+Este projeto foi desenvolvido com o objetivo de aplicar os **três pilares da POO** — herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
 
 ---
 
