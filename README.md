@@ -1,6 +1,6 @@
 # 🏠 Desafio POO
 
-Este projeto foi desenvolvido como parte do **Desafio POO**, com o objetivo de aplicar os **três pilares da POO** — abstração, herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
+Este projeto foi desenvolvido com o objetivo de aplicar os **três pilares da POO** — herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
 
 ---
 
@@ -17,10 +17,10 @@ O sistema simula o gerenciamento de **casas e apartamentos** disponíveis para a
 O projeto está organizado em **camadas**, seguindo boas práticas de arquitetura:
 
 ```
-APP → SERVICE → REPOSITORY → DOMAIN
+MAIN → SERVICE → REPOSITORY → DOMINIO
 ```
 
-### **1. Domain (`br.com.desafio.imobiliaria.dominio`)**
+### **1. Dominio **
 Contém as classes principais do domínio:
 - `Imovel` *(classe abstrata)*  
 - `Casa` *(subclasse de Imovel)*  
@@ -29,17 +29,17 @@ Contém as classes principais do domínio:
 
 Cada imóvel possui um proprietário, endereço, número, valor de aluguel e status (alugado ou disponível).
 
-### **2. Repository (`br.com.desafio.imobiliaria.repositorio`)**
+### **2. Repository **
 Responsável por armazenar e gerenciar os imóveis em memória usando `Map<Integer, Imovel>`.
 
-### **3. Service (`br.com.desafio.imobiliaria.servico`)**
+### **3. Service **
 Camada que implementa as regras de negócio, como:
 - Cadastrar imóveis  
 - Alugar ou disponibilizar imóveis  
 - Calcular o aluguel  
 - Listar imóveis e alugados  
 
-### **4. App (`br.com.desafio.imobiliaria.app`)**
+### **4. Main **
 Camada de interface no **console**, permitindo interação com o usuário via `Scanner`.
 
 ---
