@@ -1,6 +1,6 @@
-# 🏠 Diagrama de Classes – Imobiliária  
+# 🏠 Desafio POO
 
-Este projeto foi desenvolvido como parte do **Desafio POO (Programação Orientada a Objetos)**, com o objetivo de aplicar os **três pilares da POO** — abstração, herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
+Este projeto foi desenvolvido como parte do **Desafio POO**, com o objetivo de aplicar os **três pilares da POO** — abstração, herança, encapsulamento e polimorfismo — em um sistema simples de **corretora imobiliária**.
 
 ---
 
@@ -65,7 +65,7 @@ Camada de interface no **console**, permitindo interação com o usuário via `S
 ## 🧱 Diagrama UML
 Abaixo está o **Diagrama de Classes** do sistema, representando todas as relações entre as classes:
 
-![Pré-visualização do Diagrama UML](./eb8d9fa6-b51d-46b7-b1ce-698b242cadf4.png)
+![Pré-visualização do Diagrama UML](./img-uml.png)
 
 📎 [Versão em PDF do Diagrama UML](./uml-desafio-poo.drawio.pdf)
 
@@ -87,25 +87,5 @@ Abaixo está o **Diagrama de Classes** do sistema, representando todas as relaç
 - **Java 17+**
 - **IDE IntelliJ IDEA**
 - **Paradigma Orientado a Objetos (POO)**
-
----
-
-## 🚀 Como Executar
-1. Clone este repositório  
-   ```bash
-   git clone https://github.com/JuannMaicon/desafio-poo.git
-   ```
-2. Abra o projeto no IntelliJ IDEA (ou outra IDE Java)  
-3. Execute a classe `Main` no pacote `br.com.desafio.imobiliaria.app`  
-4. Interaja com o menu pelo console
-
----
-
-## 👨‍💻 Autor
-**Juan Maicon Andrade Santos**  
-Estudante de Análise e Desenvolvimento de Sistemas (Senac)  
-Estagiário de Desenvolvimento Backend – GFT Technologies  
-
-📧 [Contato no LinkedIn](https://www.linkedin.com/in/juanmaicon)
 
 ---
