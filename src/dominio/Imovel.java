@@ -1,86 +1,105 @@
 package dominio;
 
 public abstract class Imovel {
-    // Encapsulamento exigido: protected
-    protected String endereco;
-    protected int numero;
-    protected boolean alugado;
 
-    // Composição: um imóvel "tem um" proprietário
-    protected Proprietario proprietario;
+	// Atributos principais
+	protected String endereco;
+	protected int numero;
+	protected boolean alugado;
+	protected Proprietario proprietario;
 
-    // Atributos de suporte (id e preço)
-    private final int id;
-    private int precoMensal;
+	// Atributos de controle e valor
+	private final int id;
+	private int precoMensal;
 
-    protected Imovel(int id, String endereco, int numero, Proprietario proprietario, int precoMensal) {
-        this.id = id;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.proprietario = proprietario;
-        this.precoMensal = Math.max(0, precoMensal);
-        this.alugado = false;
-    }
+	// Construtor da classe imovel
+	protected Imovel(int id, String endereco, int numero, Proprietario proprietario, int precoMensal) {
+		this.id = id;
+		this.endereco = endereco;
+		this.numero = numero;
+		this.proprietario = proprietario;
+		this.precoMensal = Math.max(0, precoMensal);
+		this.alugado = false;
+	}
 
-    // ===== Getters/Setters controlados (encapsulamento) =====
-    public int getId() { return id; }
+	// Metodos get e set
+	public int getId() {
+		return id;
+	}
 
-    public String getEndereco() { return endereco; }
-    public void setEndereco(String endereco) {
-        if (endereco != null && !endereco.isBlank()) this.endereco = endereco.trim();
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public int getNumero() { return numero; }
-    public void setNumero(int numero) {
-        if (numero > 0) this.numero = numero;
-    }
+	public void setEndereco(String endereco) {
+		if (endereco != null && !endereco.isBlank())
+			this.endereco = endereco.trim();
+	}
 
-    // boolean para lógica
-    public boolean isAlugado() { return alugado; }
-    // controle interno do estado (mantém encapsulamento)
-    public void setAlugadoInterno(boolean alugado) { this.alugado = alugado; }
+	public int getNumero() {
+		return numero;
+	}
 
-    public Proprietario getProprietario() { return proprietario; }
-    public void setProprietario(Proprietario proprietario) {
-        if (proprietario != null) this.proprietario = proprietario;
-    }
+	public void setNumero(int numero) {
+		if (numero > 0)
+			this.numero = numero;
+	}
 
-    public int getPrecoMensal() { return precoMensal; }
-    public void setPrecoMensal(int precoMensal) {
-        if (precoMensal >= 0) this.precoMensal = precoMensal;
-    }
+	public boolean isAlugado() {
+		return alugado;
+	}
 
-    // ===== Métodos do enunciado =====
+	public void setAlugadoInterno(boolean alugado) {
+		this.alugado = alugado;
+	}
 
-    // contato do proprietário (sem acento para evitar problemas)
-    public String contatoProprietario() {
-        return proprietario == null ? "Sem proprietário" : proprietario.contato();
-    }
+	public Proprietario getProprietario() {
+		return proprietario;
+	}
 
-    // período em MESES (com descontos opcionais)
-    public int calcularAluguel(int meses) {
-        if (meses <= 0) return 0;
-        int bruto = getPrecoMensal() * meses;
+	public void setProprietario(Proprietario proprietario) {
+		if (proprietario != null)
+			this.proprietario = proprietario;
+	}
 
-        double desconto = 0.0;
-        if (meses >= 36) desconto = 0.15;       // 15% (3 anos)
-        else if (meses >= 24) desconto = 0.10;  // 10% (2 anos)
-        else if (meses >= 12) desconto = 0.05;  // 5%  (1 ano)
+	public int getPrecoMensal() {
+		return precoMensal;
+	}
 
-        return (int) Math.round(bruto * (1.0 - desconto));
-    }
+	public void setPrecoMensal(int precoMensal) {
+		if (precoMensal >= 0)
+			this.precoMensal = precoMensal;
+	}
 
-    // ===== Polimorfismo exigido =====
-    // Deve retornar a MENSAGEM de status (String) e será sobrescrito em Casa/Apartamento
-    public abstract String estaAlugado();
+	// Retorna o contato do proprietario ou msg padrao
+	public String contatoProprietario() {
+		return proprietario == null ? "Sem proprietário" : proprietario.contato();
+	}
 
-    // Utilitário para listagem
-    public String resumo() {
-        return String.format(
-            "#%d | %s, %d | %s | Aluguel: R$ %d | Proprietário: %s",
-            id, endereco, numero, (alugado ? "ALUGADO" : "DISPONÍVEL"),
-            precoMensal,
-            (proprietario != null ? proprietario.getNome() : "—")
-        );
-    }
+	// Calcula o valor total do aluguel com desconto conforme o tempo
+	public int calcularAluguel(int meses) {
+		if (meses <= 0)
+			return 0;
+		int bruto = getPrecoMensal() * meses;
+		double desconto = 0.0;
+		if (meses >= 36)
+			desconto = 0.15;
+		else if (meses >= 24)
+			desconto = 0.10;
+		else if (meses >= 12)
+			desconto = 0.05;
+		return (int) Math.round(bruto * (1.0 - desconto));
+	}
+
+	// Metodos abstratos para as subclasses
+	public abstract boolean estaAlugado();
+
+	public abstract String statusMensagem();
+
+	// Retorna um resumo com as principais informações do imovel
+	public String resumo() {
+		return String.format("#%d | %s, %d | %s | Aluguel: R$ %d | Proprietário: %s", id, endereco, numero,
+				(alugado ? "ALUGADO" : "DISPONÍVEL"), precoMensal,
+				(proprietario != null ? proprietario.getNome() : "—"));
+	}
 }

@@ -5,25 +5,47 @@ import java.util.*;
 import dominio.Imovel;
 
 public class RepositorioImoveis {
-    private final Map<Integer, Imovel> mapa = new LinkedHashMap<>();
-    private int sequence = 1;
+	
+	//Estrutura de dados que armazena os imoveis pelo id
+	private final Map<Integer, Imovel> mapa = new LinkedHashMap<>();
+	
+	//Atributo para sequencia de id
+	private int sequencia = 1;
 
-    public int proximoId() { return sequence++; }
+	//Gera e retorna o proximo id disponivel
+	public int proximoId() {
+		return sequencia++;
+	}
 
-    public void salvar(Imovel imovel) { mapa.put(imovel.getId(), imovel); }
+	//Salva um novo imovel no repositorio
+	public void salvar(Imovel imovel) {
+		mapa.put(imovel.getId(), imovel);
+	}
 
-    public Imovel buscar(int id) { return mapa.get(id); }
+	//Busca um imovel pelo seu id
+	public Imovel buscar(int id) {
+		return mapa.get(id);
+	}
 
-    public boolean deletar(int id) { return mapa.remove(id) != null; }
+	//Remove um imovel do repositorio com base no id
+	public boolean deletar(int id) {
+		return mapa.remove(id) != null;
+	}
+	
+	//Retorna lista com todos os imoveis 
+	public List<Imovel> listarTodos() {
+		return new ArrayList<>(mapa.values());
+	}
 
-    public List<Imovel> listarTodos() { return new ArrayList<>(mapa.values()); }
+	//Retorna lista apenas com os imoveis que estao alugados
+	public List<Imovel> listarAlugados() {
+		List<Imovel> out = new ArrayList<>();
+		for (Imovel i : mapa.values()) {
+			if (i.estaAlugado())
+				out.add(i);
+		}
 
-    public List<Imovel> listarAlugados() {
-        List<Imovel> out = new ArrayList<>();
-        for (Imovel i : mapa.values()) {
-            if (i.isAlugado()) out.add(i); // ← troquei estaAlugado() por isAlugado()
-        }
-        return out;
-    }
+		return out;
+	}
 
 }
