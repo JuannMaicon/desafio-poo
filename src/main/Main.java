@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		// Instancia o serviço principal da imobiliária
+		
 		// responsável por gerenciar os imóveis através do repositório
 		ImobiliariaService service = new ImobiliariaService(new RepositorioImoveis());
 
@@ -147,7 +147,7 @@ public class Main {
 			return;
 		}
 		System.out.println(ok ? "Alugado com sucesso!" : "Não foi possível alugar (já alugado?).");
-		System.out.println(i.statusMensagem()); // ← exibe mensagem
+		System.out.println(i.statusMensagem()); 
 	}
 
 	//Disponibiliza um imóvel
@@ -177,7 +177,7 @@ public class Main {
 		int meses = lerInt(sc);
 		int total = service.calcularAluguel(id, meses);
 		System.out.printf("Total do aluguel por %d mês(es): R$ %d%n", meses, total);
-		System.out.println(i.statusMensagem()); // ← exibe mensagem
+		System.out.println(i.statusMensagem()); 
 		System.out.println("Contato do proprietário: " + i.contatoProprietario());
 	}
 
