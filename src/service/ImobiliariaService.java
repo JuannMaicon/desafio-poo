@@ -40,7 +40,7 @@ public class ImobiliariaService {
 		Imovel i = repo.buscar(id);
 		if (i == null || i.isAlugado())
 			return false;
-		i.setAlugadoInterno(true); // ✅ agora é público
+		i.setAlugadoInterno(true);
 		return true;
 	}
 
@@ -49,7 +49,7 @@ public class ImobiliariaService {
 		Imovel i = repo.buscar(id);
 		if (i == null || !i.isAlugado())
 			return false;
-		i.setAlugadoInterno(false); // ✅ agora é público
+		i.setAlugadoInterno(false);
 		return true;
 	}
 

@@ -11,9 +11,8 @@ import dominio.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
-		
 		// responsável por gerenciar os imóveis através do repositório
 		ImobiliariaService service = new ImobiliariaService(new RepositorioImoveis());
 
@@ -32,18 +31,18 @@ public class Main {
 			System.out.println("0 Sair");
 			System.out.print("Escolha: ");
 
-			int opcao = lerInt(scan);
+			int opcao = lerInt(sc);
 
 			// Estrutura de decisão para cada operação
 			switch (opcao) {
-			case 1 -> cadastrarCasa(scan, service);
-			case 2 -> cadastrarApto(scan, service);
+			case 1 -> cadastrarCasa(sc, service);
+			case 2 -> cadastrarApto(sc, service);
 			case 3 -> listarTodos(service);
 			case 4 -> listarAlugados(service);
-			case 5 -> deletar(scan, service);
-			case 6 -> alugar(scan, service);
-			case 7 -> disponibilizar(scan, service);
-			case 8 -> calcular(scan, service);
+			case 5 -> deletar(sc, service);
+			case 6 -> alugar(sc, service);
+			case 7 -> disponibilizar(sc, service);
+			case 8 -> calcular(sc, service);
 			case 0 -> {
 				System.out.println("Até mais!");
 				return;
@@ -98,7 +97,7 @@ public class Main {
 		imprimirResumo(a);
 	}
 
-	//Exibe a lista de imoveis cadastrados
+	// Exibe a lista de imoveis cadastrados
 	private static void listarTodos(ImobiliariaService service) {
 		System.out.println("\n-- Lista de Imóveis --");
 		List<Imovel> lista = service.listarTodos();
@@ -106,14 +105,14 @@ public class Main {
 			System.out.println("(vazio)");
 			return;
 		}
-		
+
 		// Percorre e imprime cada imovel cadastrado
 		for (Imovel i : lista) {
 			imprimirResumo(i);
 		}
 	}
 
-    //Exibe a lista de imoveis alugados
+	// Exibe a lista de imoveis alugados
 	private static void listarAlugados(ImobiliariaService service) {
 		System.out.println("\n** Alugados **");
 		List<Imovel> lista = service.listarAlugados();
@@ -121,14 +120,14 @@ public class Main {
 			System.out.println("(nenhum alugado)");
 			return;
 		}
-		
+
 		// Percorre e imprime cada imovel alugado
 		for (Imovel i : lista) {
 			imprimirResumo(i);
 		}
 	}
 
-	//Deleta imovel pelo id
+	// Deleta imovel pelo id
 	private static void deletar(Scanner sc, ImobiliariaService service) {
 		System.out.print("\nID do imóvel para deletar: ");
 		int id = lerInt(sc);
@@ -136,7 +135,7 @@ public class Main {
 		System.out.println(ok ? "Imóvel deletado." : "ID não encontrado.");
 	}
 
-	//Aluga um imóvel alterando seu status interno
+	// Aluga um imóvel alterando seu status interno
 	private static void alugar(Scanner sc, ImobiliariaService service) {
 		System.out.print("\nID do imóvel para alugar: ");
 		int id = lerInt(sc);
@@ -147,10 +146,10 @@ public class Main {
 			return;
 		}
 		System.out.println(ok ? "Alugado com sucesso!" : "Não foi possível alugar (já alugado?).");
-		System.out.println(i.statusMensagem()); 
+		System.out.println(i.statusMensagem());
 	}
 
-	//Disponibiliza um imóvel
+	// Disponibiliza um imóvel
 	private static void disponibilizar(Scanner sc, ImobiliariaService service) {
 		System.out.print("\nID do imóvel para disponibilizar: ");
 		int id = lerInt(sc);
@@ -164,7 +163,7 @@ public class Main {
 		System.out.println(i.statusMensagem());
 	}
 
-	//Calcula o valor total de aluguel por um período em meses
+	// Calcula o valor total de aluguel por um período em meses
 	private static void calcular(Scanner sc, ImobiliariaService service) {
 		System.out.print("\nID do imóvel: ");
 		int id = lerInt(sc);
@@ -177,15 +176,15 @@ public class Main {
 		int meses = lerInt(sc);
 		int total = service.calcularAluguel(id, meses);
 		System.out.printf("Total do aluguel por %d mês(es): R$ %d%n", meses, total);
-		System.out.println(i.statusMensagem()); 
+		System.out.println(i.statusMensagem());
 		System.out.println("Contato do proprietário: " + i.contatoProprietario());
 	}
 
-	//Record auxiliar para agrupar os dados do imóvel durante o cadastro
+	// Record auxiliar para agrupar os dados do imóvel durante o cadastro
 	private record DadosImovel(String endereco, int numero, int preco, Proprietario proprietario) {
 	}
 
-	//Coleta os dados comuns de um imóvel e do proprietário
+	// Coleta os dados comuns de um imóvel e do proprietário
 	private static DadosImovel lerDadosImovel(Scanner scan) {
 		System.out.print("Endereço (rua/avenida): ");
 		String endereco = scan.nextLine().trim();
@@ -208,15 +207,15 @@ public class Main {
 		return new DadosImovel(endereco, numero, preco, p);
 	}
 
-	//Exibe as informações detalhadas de um imovel
+	// Exibe as informações detalhadas de um imovel
 	private static void imprimirResumo(Imovel i) {
 		System.out.println(i.resumo());
 		System.out.println("  Status: " + i.statusMensagem());
 		System.out.println("  Contato proprietário: " + i.contatoProprietario());
 	}
 
-	//Faz a leitura de um nmero inteiro de forma segura,
-    //tratamento de exceções de entrada inválida
+	// Faz a leitura de um nmero inteiro de forma segura,
+	// tratamento de exceções de entrada inválida
 	private static int lerInt(Scanner sc) {
 		while (true) {
 			try {
