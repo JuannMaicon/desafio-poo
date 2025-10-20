@@ -17,11 +17,11 @@ O sistema simula o gerenciamento de **casas e apartamentos** disponíveis para a
 O projeto está organizado em **camadas**, seguindo boas práticas de arquitetura:
 
 ```
-MAIN → SERVICE → REPOSITORY → DOMINIO
+MAIN → INTERFACEUSUARIO → SERVICE → REPOSITORY → DOMINIO
 ```
 
-### **1. Dominio **
-Contém as classes principais do domínio:
+### **1. Dominio /**
+Contém as classes principais do domínio:  
 - `Imovel` *(classe abstrata)*  
 - `Casa` *(subclasse de Imovel)*  
 - `Apartamento` *(subclasse de Imovel)*  
@@ -29,20 +29,37 @@ Contém as classes principais do domínio:
 
 Cada imóvel possui um proprietário, endereço, número, valor de aluguel e status (alugado ou disponível).
 
-### **2. Repository **
+---
+
+### **2. Repository /**
 Responsável por armazenar e gerenciar os imóveis em memória usando `Map<Integer, Imovel>`.
 
-### **3. Service **
-Camada que implementa as regras de negócio, como:
+---
+
+### **3. Service /**
+Camada que implementa as regras de negócio, como:  
 - Cadastrar imóveis  
 - Alugar ou disponibilizar imóveis  
 - Calcular o aluguel  
 - Listar imóveis e alugados  
 
-### **4. Main **
-Camada de interface no **console**, permitindo interação com o usuário via `Scanner`.
+---
+
+### **4. InterfaceUsuario /**
+Camada responsável pela **interação com o usuário via console**, exibindo menus e capturando entradas com `Scanner`.  
+É responsável por chamar os métodos da camada `Service` e exibir os resultados formatados.  
+
+💡 A classe `ImobiliariaUI` substitui a lógica que antes ficava na `Main`, tornando o código mais modular e organizado.
 
 ---
+
+### **5. Main /**
+Ponto de entrada do programa.  
+Cria as instâncias das camadas (`Repository`, `Service` e `InterfaceUsuario`) e inicia o sistema com `ui.iniciar()`.
+
+
+
+
 
 ## ⚙️ Funcionalidades Principais
 ✅ Cadastro de casas e apartamentos  
